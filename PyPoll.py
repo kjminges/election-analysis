@@ -12,7 +12,7 @@ import datetime as dt
 # Use the now() attribute on the datetime class to get the present time.
 now = dt.datetime.now()
 # Print the present time.
-print("The time right now is ", now)
+#print("The time right now is ", now)
 
 import csv
 import os
@@ -31,10 +31,52 @@ with open(file_to_save, "w") as txt_file:
     txt_file.write("\n- Love Computer\n-------------------\nComputer\nLocation: Your Desk\nNumber: I'm a computer dummy, I use fax")
     txt_file.write("Hello World, it's me computer. ")
 
+total_votes = 0
+candidate_options = []
+candidate_votes = {}
+
+winning_candidate = ""
+winning_count = 0
+winning_percentage = 0
+
 with open(file_to_load) as election_data:
     file_reader = csv.reader(election_data)
+    
     headers = next(file_reader)
-    print(headers)
 
-    #for row in file_reader:
-        #print(row[0])
+    for row in file_reader:
+        
+        total_votes += 1
+        
+        candidate_name = row[2]
+        
+        if candidate_name not in candidate_options:
+            candidate_options.append(candidate_name)
+            candidate_votes[candidate_name] = 0
+        
+        candidate_votes[candidate_name] += 1
+
+'''print(f"There are a total of {total_votes:,} votes.")
+print(f"The candidates are as follows: {candidate_options}")
+print(candidate_votes)'''
+
+for candidate_name in candidate_votes:
+    
+    votes = candidate_votes[candidate_name]
+    
+    percentage_vote = float(votes) / float(total_votes) * 100
+
+    print(f"{candidate_name}: received {percentage_vote:.2f}% of the vote.")
+
+    if (votes > winning_count) and (percentage_vote > winning_percentage):
+        winning_count = votes
+        winning_percentage = percentage_vote
+        winning_candidate = candidate_name
+
+winning_candidate_message = (
+    f"---------------------------\n"
+    f"Winner: {candidate_name}\n"
+    f"Winning Vote Count: {winning_count:,}\n"
+    f"Winning Percetnage: {winning_percentage:.2f}%\n"
+    f"---------------------------\n")
+print(winning_candidate_message)
