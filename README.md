@@ -29,6 +29,7 @@ The Colorodo Board of Elections has asked us to provide answers to the following
 	- There are three counties in the congressional district: Jefferson county, Denver county, and Arapahoe county. A breakdown of the results, including percent of total votes and the raw number of votes by county, can be found in the screenshot below (note that this screen shot is a subsection of the text file that the program will generate for the Board):
 
 **Count Election Results**
+
 ![Count Election Results](https://github.com/kjminges/Election_Analysis/blob/main/Resources/county_votes.png)
 
 3. Which county had the largest number of votes?
@@ -37,6 +38,7 @@ The Colorodo Board of Elections has asked us to provide answers to the following
 	- In this election, there were three candidates that received votes: Charles Casper Stockham, Diana DeGette, and Raymon Anthony Doane. A breakdown of the results by candidate, including votes received and the percent of total votes, can be found in the screenshot below (note that this screen shot is a subsection of the text file that the program will generate for the Board):
 
 **Candidate Election Results**
+
 ![Candidate Election Results](https://github.com/kjminges/Election_Analysis/blob/main/Resources/candidate_votes.png)
 
 5. Which candidate won the election, what was their vote count, and what was their percentage of the total votes?
