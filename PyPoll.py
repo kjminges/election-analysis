@@ -56,27 +56,45 @@ with open(file_to_load) as election_data:
         
         candidate_votes[candidate_name] += 1
 
-'''print(f"There are a total of {total_votes:,} votes.")
-print(f"The candidates are as follows: {candidate_options}")
-print(candidate_votes)'''
+#print(f"There are a total of {total_votes:,} votes.")
+#print(f"The candidates are as follows: {candidate_options}")
+#print(candidate_votes)
 
-for candidate_name in candidate_votes:
-    
-    votes = candidate_votes[candidate_name]
-    
-    percentage_vote = float(votes) / float(total_votes) * 100
+with open(file_to_save, "w") as txt_file:
 
-    print(f"{candidate_name}: received {percentage_vote:.2f}% of the vote.")
+    election_results = (
+        f"\nElection Results\n"
+        f"-------------------------\n"
+        f"Total Votes: {total_votes:,}\n"
+        f"-------------------------\n"
+    )
+    print(election_results, end="")
+    txt_file.write(election_results)
 
-    if (votes > winning_count) and (percentage_vote > winning_percentage):
-        winning_count = votes
-        winning_percentage = percentage_vote
-        winning_candidate = candidate_name
+    for candidate_name in candidate_votes:
+        
+        votes = candidate_votes[candidate_name]
+        
+        percentage_vote = float(votes) / float(total_votes) * 100
 
-winning_candidate_message = (
-    f"---------------------------\n"
-    f"Winner: {candidate_name}\n"
-    f"Winning Vote Count: {winning_count:,}\n"
-    f"Winning Percetnage: {winning_percentage:.2f}%\n"
-    f"---------------------------\n")
-print(winning_candidate_message)
+        candidate_results = (
+            f"{candidate_name}: received {percentage_vote:.2f}% of the vote.\n")
+
+        print(candidate_results)
+        txt_file.write(candidate_results)
+
+        if (votes > winning_count) and (percentage_vote > winning_percentage):
+            winning_count = votes
+            winning_candidate = candidate_name
+            winning_percentage = percentage_vote
+
+    winning_candidate_message = (
+        f"---------------------------\n"
+        f"Winner: {winning_candidate}\n"
+        f"Winning Vote Count: {winning_count:,}\n"
+        f"Winning Percetnage: {winning_percentage:.2f}%\n"
+        f"---------------------------\n")
+
+#print(winning_candidate_message)
+
+    txt_file.write(winning_candidate_message)
